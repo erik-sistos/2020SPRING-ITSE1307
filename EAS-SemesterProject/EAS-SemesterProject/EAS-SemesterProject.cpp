@@ -43,10 +43,10 @@ int calculateHighScore(int intNumberOfItems, int NumberOfCoins, int intNumberOfL
 void displaySplashScreen() {
 	// Splash Screen
 	std::cout << "\n";
-	std::cout <<  "                  /\\" << std::endl;
+	std::cout << "                  /\\" << std::endl;
 	std::cout << "	          ||" << std::endl;
-	std::cout <<  "    ____ (((+))) _||_" << std::endl;
-	std::cout << "   /.--.\\  .-.  /.||.\\ "<< std::endl;
+	std::cout << "    ____ (((+))) _||_" << std::endl;
+	std::cout << "   /.--.\\  .-.  /.||.\\ " << std::endl;
 	std::cout << "  /.,   \\\\(0.0)// || \\\\" << std::endl;
 	std::cout << " /;`\";/\\ \\\\|m|//  ||  ;\\ " << std::endl;
 	std::cout << " |:   \\ \\__`:`____||__:|" << std::endl;
@@ -76,7 +76,7 @@ void winLoseScreen(bool& boolpWinCodition, int& intNumberOfLives, int intNumberO
 	bool boolWinCondition = boolpWinCodition;
 	if (boolWinCondition == true && intNumberOfLives > 0)
 	{
-		
+
 		std::cout << "            _( }" << std::endl;
 		std::cout << "   -=  _  <<  \\" << std::endl;
 		std::cout << "      `.\\__/`/\\\\" << std::endl;
@@ -111,7 +111,7 @@ void winLoseScreen(bool& boolpWinCodition, int& intNumberOfLives, int intNumberO
 		std::cout << "    @@@@@             @@@@@@@@              @@@@@" << std::endl;
 		std::cout << "   @@@@@@@                                 @@@@@@@" << std::endl;
 		std::cout << "    @@@@@                                   @@@@@" << std::endl;
-		std::cout << std::setfill(' ')<< std::setw(42) << "You lost! Better luck next time." << std::endl;
+		std::cout << std::setfill(' ') << std::setw(42) << "You lost! Better luck next time." << std::endl;
 	}
 }
 
@@ -148,6 +148,7 @@ int main()
 			intNumberOfItems = 0;
 			intNumberOfLives = intStartingNumberOfLives;
 			boolWinCondition = false;
+			intCurrentRoomIndex = 0;
 			vtrRoom.clear();
 
 			objTempRoom = Room();
@@ -201,7 +202,7 @@ int main()
 
 
 				Room objRoom = vtrRoom.at(intCurrentRoomIndex);
-				//std::cerr << objRoom.toString() << std::endl;
+				std::cerr << objRoom.toString() << std::endl;
 
 				//Loop for correct user input
 				do {
@@ -215,7 +216,7 @@ int main()
 				switch (chrDirectionChoice) {
 				case 'w': //Walk North
 					std::cout << "You walk north..." << std::endl;
-					objRoom.checkForTrap(intNumberOfLives);
+					vtrRoom.at(intCurrentRoomIndex).checkForTrap(intNumberOfLives);
 					if (objRoom.getNorth() > -1) {
 						intCurrentRoomIndex = objRoom.getNorth();
 					}
@@ -225,7 +226,7 @@ int main()
 					break;
 				case 'a': //Walk West
 					std::cout << "You walk west..." << std::endl;
-					objRoom.checkForTrap(intNumberOfLives);
+					vtrRoom.at(intCurrentRoomIndex).checkForTrap(intNumberOfLives);
 					if (objRoom.getWest() > -1) {
 						intCurrentRoomIndex = objRoom.getWest();
 					}
@@ -235,7 +236,7 @@ int main()
 					break;
 				case 's': //Walk South
 					std::cout << "You walk south..." << std::endl;
-					objRoom.checkForTrap(intNumberOfLives);
+					vtrRoom.at(intCurrentRoomIndex).checkForTrap(intNumberOfLives);
 					if (objRoom.getSouth() > -1) {
 						intCurrentRoomIndex = objRoom.getSouth();
 					}
@@ -245,7 +246,7 @@ int main()
 					break;
 				case 'd': //Walk East
 					std::cout << "You walk east..." << std::endl;
-					objRoom.checkForTrap(intNumberOfLives);
+					vtrRoom.at(intCurrentRoomIndex).checkForTrap(intNumberOfLives);
 					if (objRoom.getEast() > -1) {
 						intCurrentRoomIndex = objRoom.getEast();
 					}
